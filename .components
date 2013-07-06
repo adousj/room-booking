@@ -1,0 +1,10 @@
+---
+:orm: activerecord
+:test: rspec
+:mock: none
+:script: jquery
+:renderer: erb
+:stylesheet: sass
+:namespace: RoomManagement
+:migration_format: number
+:admin_renderer: erb
