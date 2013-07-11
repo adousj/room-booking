@@ -19,6 +19,10 @@ class Account < ActiveRecord::Base
   # Callbacks
   before_save :encrypt_password, :if => :password_required
 
+  def before_create
+    self.role = 'user'
+  end
+
   ##
   # This method is for authentication purpose
   #

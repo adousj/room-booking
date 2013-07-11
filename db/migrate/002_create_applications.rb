@@ -6,6 +6,7 @@ class CreateApplications < ActiveRecord::Migration
       t.datetime :end_at
       t.string :email
       t.string :phone
+      t.string :status
       t.integer :account_id
       t.timestamps
     end

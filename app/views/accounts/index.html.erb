@@ -1,0 +1,24 @@
+<div class="row-fluid">
+  <h1>unread messages</h1>
+</dvi>
+
+<!-- <div class="row-fluid">
+  <table>
+    <tbody>
+      <tr>
+        <% for msg in @unread_messages %>
+          <td><%= msg.content %></td>
+          <td><a href="#" class="btn btn warning">已读</a></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+<% if @account %>
+  <ul>
+    <li><%= @account.name %></li>
+    <li><%= @account.surname %></li>
+    <li><%= @account.email %></li>
+  </ul>
+<% end %>

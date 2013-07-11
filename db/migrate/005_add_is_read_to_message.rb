@@ -1,13 +1,13 @@
-class AddAccountToMessage < ActiveRecord::Migration
+class AddIsReadToMessage < ActiveRecord::Migration
   def self.up
     change_table :messages do |t|
-      t.integer :account_id
+      t.boolean :is_read
     end
   end
 
   def self.down
     change_table :messages do |t|
-      t.remove :account_id
+      t.remove :is_read
     end
   end
 end

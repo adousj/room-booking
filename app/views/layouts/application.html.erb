@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>讨论室借用系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/flat-ui/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="/flat-ui/css/flat-ui.css" rel="stylesheet">
+    <!-- <link rel="shortcut icon" href="images/favicon.ico"> -->
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container-fluid">
+                             <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="#" class="brand">创业学院 教室借阅系统</a>
+                            <div class="nav-collapse collapse navbar-responsive-collapse">
+                                <!-- <ul class="nav">
+                                    <li class="active">
+                                        <a href="#">主页</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">链接</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">dfadf</a>
+                                    </li>
+                                    <li class="dropdown">
+                                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">下拉菜单<strong class="caret"></strong></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#">下拉导航1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">下拉导航2</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">其他</a>
+                                            </li>
+                                            <li class="divider">
+                                            </li>
+                                            <li class="nav-header">
+                                                标签
+                                            </li>
+                                            <li>
+                                                <a href="#">链接1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">链接2</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul> -->
+                                <ul class="nav pull-right">
+                                    <li><a href="http://chuangye.sjtu.edu.cn">chuangye</a></li>
+                                    <li><a href="#">activity</a></li>
+                                    <!-- <li class="divider-vertical"></li> -->
+                                    <% if @current_account or account_authenticate %>
+                                        <li class="dropdown">
+                                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">account<strong class="caret"></strong></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">message</a></li>
+                                                <li><a href="<%= url(:applicaitons, :index) %>">applications</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="<%= url(:accounts, :logout) %>">logout</a></li>
+                                                <li><a href="#">destroy</a></li>
+                                            </ul>
+                                        </li>
+                                    <% else %>
+                                        <li><a href="<%= url(:accounts, :login) %>">login</a></li>
+                                    <% end %>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+      <%= yield %>
+
+    </div>
+
+    <!-- Load JS here for greater good =============================-->
+    <!-- // <script src="jquery/jquery-1.10.2.js"></script> -->
+    <script src="/flat-ui/js/jquery-1.8.3.min.js"></script>
+    <script src="/flat-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="/flat-ui/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="/flat-ui/js/bootstrap.min.js"></script>
+    <script src="/flat-ui/js/bootstrap-select.js"></script>
+    <script src="/flat-ui/js/bootstrap-switch.js"></script>
+    <script src="/flat-ui/js/flatui-checkbox.js"></script>
+    <script src="/flat-ui/js/flatui-radio.js"></script>
+    <script src="/flat-ui/js/jquery.tagsinput.js"></script>
+    <script src="/flat-ui/js/jquery.placeholder.js"></script>
+    <script src="/flat-ui/js/jquery.stacktable.js"></script>
+    <!-- // <script src="http://vjs.zencdn.net/c/video.js"></script> -->
+    <script src="/flat-ui/js/application.js"></script>
+  </body>
+
+</html>

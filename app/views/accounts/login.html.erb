@@ -1,0 +1,30 @@
+
+<div class="row-fluid">
+  <div class="span4 offset4 login-form">
+
+<% form_tag url(:accounts, :login), :class => 'form form-horizontal', :method => 'post' do %>
+  <% field_set_tag do %>
+    <div class="controls pull-right">
+      <a href="/new">add new account?</a>
+    </div>
+    <div id="legend">
+      <legend class="brand">登 录</legend>
+    </div>
+    <%= flash_tag(:notice, :class => 'alert alert-danger') %>
+    <div class="control-group">
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+    </div>
+    <div class="control-group">
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    </div>
+
+    <div class="controls" style="padding-top:20px;">
+      <%= submit_tag "login", :class => 'btn btn-primary btn-large btn-block' %>
+    </div>
+  <% end %>
+<% end %>
+
+  </div>
+</div>

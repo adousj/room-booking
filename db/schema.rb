@@ -29,17 +29,19 @@ ActiveRecord::Schema.define(version: 5) do
     t.datetime "end_at"
     t.string   "email"
     t.string   "phone"
+    t.string   "status"
     t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status"
+    t.string   "comment"
   end
 
   create_table "messages", force: true do |t|
     t.string   "content"
+    t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "account_id"
+    t.boolean  "is_read"
   end
 
 end
