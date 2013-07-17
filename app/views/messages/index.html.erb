@@ -1,0 +1,25 @@
+
+<div class="row-fluid">
+  <div class="span10 offset1">
+    <% if @unread_messages or @read_messages %>
+      <table class="table table-striped table-hover">
+        <caption><h2>消息</h2></caption>
+        <thead>
+          <tr>
+            <th>time</th>
+            <th>content</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="unread-msg">
+          <%= partial 'messages/message', :collection => @unread_messages %>
+        </tbody>
+        <tbody id="read-msg">
+          <%= partial 'messages/message', :collection => @read_messages %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="row">no message</div>
+    <% end %>
+  </div>
+</div>

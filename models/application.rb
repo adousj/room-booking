@@ -9,9 +9,10 @@ class Application < ActiveRecord::Base
     @@statuses
   end
 
-  def before_craete
+  def before_create
     self.status = @@statuses[:unaudited]
   end
 
   belongs_to :account
+  belongs_to :room
 end

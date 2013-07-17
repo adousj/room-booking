@@ -39,6 +39,25 @@ module RoomManagement
     # layout  :my_layout            # Layout can be in views/layouts/foo.ext or views/foo.ext (default :application)
     #
 
+
+    set :admin_model, 'Account'
+    set :login_page,  '/accounts/login'
+
+    # enable  :sessions
+    # disable :store_location
+
+    # access_control.roles_for :any do |role|
+      # role.protect '/'
+      # role.allow   '/sessions'
+      # role.allow [url(:accounts)]
+    # end
+
+    # access_control.roles_for :admin do |role|
+    #   role.project_module :applications, '/applications'
+    #   role.project_module :messages, '/messages'
+    #   role.project_module :accounts, '/accounts'
+    # end
+
     ##
     # You can configure for a specified environment like:
     #

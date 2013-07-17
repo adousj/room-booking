@@ -1,0 +1,43 @@
+
+table#room-table {
+  background: #ECF0F1;
+}
+
+table#room-table thead tr th {
+  background: #34495E;
+  color: #95A5A6;
+}
+
+table#room-table tbody tr td:first-child {
+  background: #1ABC9C;
+  color: black;
+}
+
+/*table tbody tr td:not(:first-child):hover {
+  background: #F1C40F;
+}
+*/
+/*
+input {
+  max-height: 30px;
+}
+*/
+.modal-body {
+    max-height: 720px;
+}
+
+.modal-body input {
+  max-height: 16px;
+}
+
+.modal-body input[readonly="readonly"] {
+  color: black;
+  font-size: 16pt;
+}
+
+.navbar #logo {
+  /*background-image: url("/images/logo.png");*/
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

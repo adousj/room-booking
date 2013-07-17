@@ -5,7 +5,7 @@
 <div class="row-fluid">
   <div class="span4 offset4 login-form">
 
-<% form_tag url(:applications, :create), :class => 'form form-horizontal', :method => 'post' do %>
+<% form_tag url(:apps, :create), :class => 'form form-horizontal', :method => 'post' do %>
   <%= flash_tag(:notice, :class => 'alert alert-danger') %>
   <% field_set_tag do %>
     <div class="control-group">

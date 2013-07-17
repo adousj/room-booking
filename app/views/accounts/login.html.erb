@@ -4,24 +4,24 @@
 
 <% form_tag url(:accounts, :login), :class => 'form form-horizontal', :method => 'post' do %>
   <% field_set_tag do %>
-    <div class="controls pull-right">
-      <a href="/new">add new account?</a>
-    </div>
     <div id="legend">
       <legend class="brand">登 录</legend>
     </div>
     <%= flash_tag(:notice, :class => 'alert alert-danger') %>
     <div class="control-group">
-      <%= label_tag :email %>
-      <%= text_field_tag :email %>
+      <%= label_tag '邮箱' %>
+      <%= email_field_tag :email %>
     </div>
     <div class="control-group">
-      <%= label_tag :password %>
+      <%= label_tag '密码' %>
       <%= password_field_tag :password %>
     </div>
 
-    <div class="controls" style="padding-top:20px;">
-      <%= submit_tag "login", :class => 'btn btn-primary btn-large btn-block' %>
+    <div class="control-group" style="padding:20px 30px">
+      <%= submit_tag '登 陆', :class => 'btn btn-primary btn-large btn-block' %>
+    </div>
+    <div class="control-group pull-right">
+      <a href="<%= url(:accounts, :new) %>">免费注册</span></a>
     </div>
   <% end %>
 <% end %>

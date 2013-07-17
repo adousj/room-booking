@@ -20,8 +20,15 @@ GEM
     atomic (1.1.10)
     bcrypt-ruby (3.1.0)
     builder (3.1.4)
+    chronic (0.9.1)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
+    execjs (1.4.0)
+      multi_json (~> 1.0)
     http_router (0.11.0)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
@@ -99,6 +106,8 @@ PLATFORMS
 DEPENDENCIES
   activerecord (>= 3.1)
   bcrypt-ruby
+  chronic
+  coffee-script
   erubis (~> 2.7.0)
   padrino (= 0.11.2)
   rack-test

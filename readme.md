@@ -39,6 +39,7 @@ padrino start
 + messages
   id, int
   content, string
+  is_read, boolean
   belongs_to :user
 
 

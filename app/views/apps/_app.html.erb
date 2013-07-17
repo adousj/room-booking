@@ -1,0 +1,25 @@
+<%
+  tr_style = { nil => 'warning',
+               'unaudited' => 'warning',
+               'approved' => 'success',
+               'denied' => 'error' }
+  td_style = { nil => 'btn-inverse',
+               'unaudited' => 'btn-inverse',
+               'approved' => 'btn-success',
+               'denied' => 'btn-danger' }
+%>
+<tr class="<%= tr_style.keys.include?(app.status) ? tr_style[app.status] : tr_style[nil] %>">
+
+  <td><%= app.id %></td>
+  <td><%= app.name %></td>
+  <td><%= app.room_id %></td>
+  <td>
+    <strong><%= app.start_at.getlocal.strftime('%Y-%m-%d') %></strong> <%= app.start_at.getlocal.strftime('%H:%M') + '--' + app.end_at.getlocal.strftime('%H:%M') %>
+  </td>
+  <td><%= app.email %></td>
+  <td><%= app.phone %></td>
+  <td><%= app.comment %></td>
+  <td><%= app.created_at.getlocal.strftime('%Y-%m-%d %H:%M') %></td>
+  <td class="<%= td_style.keys.include?(app.status) ? td_style[app.status] : td_style[nil] %>"><%= app.status ? app.status : 'unaudited' %></td>
+
+</tr>

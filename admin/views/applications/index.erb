@@ -45,7 +45,9 @@
                 <th class=header> <%= mat(:application, :account_id) %></th>
                 <th class=header> <%= mat(:application, :created_at) %></th>
                 <th class=header> <%= mat(:application, :updated_at) %></th>
-                <th class=header> <%= mat(:application, :status) %></th>
+                <!-- <th class=header> <%= mat(:application, :status) %></th> -->
+                <th class=header>同意</th>
+                <th class=header>否决</th>
                 <th class="header list-row-action-header"></th>
     </thead>
 
@@ -64,7 +66,20 @@
           <td class=list-column> <%= application.account_id %> </td>
           <td class=list-column> <%= time_ago_in_words application.created_at %></td>
           <td class=list-column> <%= time_ago_in_words application.updated_at %></td>
-          <td class=list-column> <%= application.status %> </td>
+          <td class=list-column>
+            <%- form_tag url(:applications, :approve, :id => application.id), :method => :put do %>
+              <button type="submit" class="btn btn-success btn-small">
+                <i class="icon-ok"></i>
+              </button>
+            <% end %>
+          </td>
+          <td class=list-column>
+            <%- form_tag url(:applications, :deny, :id => application.id), :method => :put do %>
+              <button type="submit" class="btn btn-warning btn-small">
+                <i class="icon-remove"></i>
+              </button>
+            <% end %>
+          </td>
           <td class="list-column list-row-action">
             <div class='list-row-action-wrapper'>
                <%= link_to tag_icon(:edit), :href => url(:applications, :edit, :id => application.id), :rel => :tooltip, :title => "#{pat(:edit)} application", :class => 'list-row-action-wrapper-link' %>

@@ -1,11 +1,14 @@
-<div class="row">
-  <div class="span1">message.id</div>
-  <div class="span4">message.content</div>
-  <div class="span1">
-    <% if message.is_read %>
-      <a href="#" class="btn btn-info">已读</a>
-    <% else %>
-      <a href="#" class="btn btn-warning">未读</a>
-    <% end %>
-  </div>
-</div>
+
+<tr class="<%= message.is_read ? 'success' : 'error' %>" data-msg-id="<%= message.id %>">
+
+  <td>
+    <strong><%= message.created_at.getlocal.strftime('%Y-%m-%d') %></strong> <%= message.created_at.getlocal.strftime('%H:%M') %>
+  <td><%= message.content %></td>
+  </td>
+  <td>
+    <div id="msg-switch<%= message.id %>" class="switch switch-square msg-switch" data-on-label="未读" data-off-label="已读">
+      <input type="checkbox" <%= message.is_read ? 'unchecked' : 'checked' %> />
+    </div>
+  </td>
+
+</tr>

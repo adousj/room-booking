@@ -1,24 +1,155 @@
-<div class="row-fluid">
-  <h1>unread messages</h1>
-</dvi>
 
-<!-- <div class="row-fluid">
-  <table>
-    <tbody>
+<div class="row-fluid">
+<div class="row span10 offset1">
+
+  <table id="room-table" class="table table-bordered">
+    <caption>
+      <div class="row">
+        <div class="span2 offset5">
+          <h2><%= @current_date %></h2>
+        </div>
+
+        <!-- Button to trigger modal -->
+        <!-- <div class="span4 pull-right float"> -->
+        <div class="span1">
+          <a id="table-date" href="#datepickerModal" role="button" data-toggle="modal">
+            <img src="/flat-ui/images/icons/Calendar@2x.png" alt="Calendar" width="60px">
+          </a>
+        </div>
+      </div>
+    </caption>
+
+    <thead>
       <tr>
-        <% for msg in @unread_messages %>
-          <td><%= msg.content %></td>
-          <td><a href="#" class="btn btn warning">已读</a></td>
-        <% end %>
+        <th></div></th>
+        <th><strong>room1</strong></th>
+        <th><strong>room2</strong></th>
+        <th><strong>room3</strong></th>
+        <th><strong>room4</strong></th>
+        <th><strong>room5</strong></th>
+        <th><strong>room6</strong></th>
+        <th><strong>room7</strong></th>
       </tr>
+    <tbody>
+      <% for i in (9..16) %> 
+        <tr>
+          <td class=""><strong><%= "#{i}:00" %></strong></td>
+          <td class="table-item" data-id="<%= i %>1">room[1][<%= i-8 %>]</td>
+          <td class="table-item" data-id="<%= i %>2">room[2][<%= i-8 %>]</td>
+          <td class="table-item" data-id="<%= i %>3">room[3][<%= i-8 %>]</td>
+          <td class="table-item" data-id="<%= i %>4">room[4][<%= i-8 %>]</td>
+          <td class="table-item" data-id="<%= i %>5">room[5][<%= i-8 %>]</td>
+          <td class="table-item" data-id="<%= i %>6">room[6][<%= i-8 %>]</td>
+          <td class="table-item" data-id="<%= i %>7">room[7][<%= i-8 %>]</td>
+        </tr> 
+      <% end %>
+    </tbody>
+
     </tbody>
   </table>
-</div> -->
 
-<% if @account %>
-  <ul>
-    <li><%= @account.name %></li>
-    <li><%= @account.surname %></li>
-    <li><%= @account.email %></li>
-  </ul>
+</div>
+</div>
+
+<div class="row-fluid">
+  <!-- Modal -->
+  <div id="datepickerModal" class="modal hide fade span3" tabindex="-1" role="dialog" aria-labelledby="dateoickerModalLabel" aria-hidden="true">
+
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="fui-cross"></span></button>
+      <h3 id="myModalLabel">请选择时间</h3>
+    </div>
+    <div class="modal-body" id="datepicker" data-date-format="yyyy-mm-dd" data-start-date="<%= @start_date %>" data-end-date="<%= @end_date %>" data-date="<%= @current_date %>">
+    </div>
+<!--     <div class="modal-footer">
+      <button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">关闭</button>
+      <button class="btn btn-primary">Save changes</button>
+    </div> -->
+  </div>
+</div>
+
+<div class="row-fluid">
+<!-- <div class="span4 offset4"> -->
+
+<div id="appModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<% form_tag url(:applications, :new), :class => 'modal-form', :method => 'post' do %>
+  <% field_set_tag do %>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">请填写申请表</h3>
+      <!-- <a id="app-notice" class="alter alter-error pull-right" data-dismiss="alert"></a> -->
+    </div>
+<!--     <div id="legend">
+      <legend class="">Add new application</legend>
+    </div> -->
+
+<div class="modal-body">
+  <%= flash_tag(:notice, :class => 'alert alert-danger') %>
+
+  <div class="control-group">
+    <%= label_tag '教室', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :room_id, :readonly => true %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag '时间', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :time, :readonly => true %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= hidden_field_tag :start_at %>
+      <%= hidden_field_tag :end_at %>
+    </div>
+  </div>
+    
+  <div class="control-group">
+    <%= label_tag '姓名', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :name, :required => true %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag '邮箱 (可选)', :class => 'control-label' %>
+    <div class="controls">
+      <%= email_field_tag :email %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag '电话 (可选)', :class => 'control-label' %>
+    <div class="controls">
+      <%= telephone_field_tag :phone %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag '附言 (可选)', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :commet %>
+    </div>
+  </div>
+
+</div>
+
+  <div class="modal-footer">
+    <button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <!-- <button class="btn btn-primary">Save changes</button> -->
+    <%= submit_tag "提交申请", :class => 'btn btn-primary' %>
+    <!-- <div class="control-group">
+      <div class="controls">
+      </div>
+    </div> -->
+  </div>
+
 <% end %>
+<% end %>
+
+</div>
+</div>

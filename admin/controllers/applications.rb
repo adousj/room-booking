@@ -1,7 +1,8 @@
 RoomManagement::Admin.controllers :applications do
   get :index do
     @title = "Applications"
-    @applications = Application.all
+    @applications = Application.find_all_by_status(Application.statuses[:unaudited])
+    @applications += Application.find_all_by_status(nil)
     render 'applications/index'
   end
 
@@ -53,6 +54,30 @@ RoomManagement::Admin.controllers :applications do
       halt 404
     end
   end
+
+  # agree the application
+  put :approve, :with => :id do
+    app = Application.find(params[:id])
+    redirect url(:applications, :index) unless app
+    app.status = Application.statuses[:approved]
+    flash[:error] = "agree #{params[:id]} save failed" unless app.save
+    unless app.account.messages.create(:content => "your application for room#{app.room_id} from #{app.start_at.getlocal.strftime('%Y-%m-%d  %H:%M')} ~ #{app.end_at.getlocal.strftime('%Y-%m-%d %H:%M')} approved")
+      flash[:error] = "send message for #{params[:id]} failed"
+    end
+    redirect url(:applications, :index)
+  end
+
+  # deny the application
+  put :deny, :with => :id do
+    app = Application.find(params[:id])
+    redirect url(:applications, :index) unless app
+    app.status = Application.statuses[:denied]
+    flash[:error] = "agree #{params[:id]} save failed" unless app.save
+    unless app.account.messages.create(:content => "your application for #{app.room_id} from #{app.start_at} to #{app.end_at} denied")
+      flash[:error] = "send message for #{params[:id]} failed"
+    end
+    redirect url(:applications, :index)
+   end
 
   delete :destroy, :with => :id do
     @title = "Applications"
