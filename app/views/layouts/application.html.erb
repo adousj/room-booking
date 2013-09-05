@@ -122,6 +122,8 @@
                         <li><%= link_to '退出', url(:accounts, :logout), :confirm => '确定退出？' %></li>
                     <% else %>
                         <li><%= link_to '请登录', url(:accounts, :login) %></li>
+                        <li>&nbsp;</li>
+                        <li><%= link_to '注册新用户', url(:accounts, :new) %></li>
                     <% end %>
                 </ul>
             </div>
