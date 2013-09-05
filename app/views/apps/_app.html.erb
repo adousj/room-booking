@@ -7,6 +7,10 @@
                'unaudited' => 'btn-inverse',
                'approved' => 'btn-success',
                'denied' => 'btn-danger' }
+  status_words = { nil => '未审核',
+                   'unaudited' => '未审核',
+                   'approved' => '同意',
+                   'denied' => '拒绝' }
 %>
 <tr class="<%= tr_style.keys.include?(app.status) ? tr_style[app.status] : tr_style[nil] %>">
 
@@ -20,6 +24,6 @@
   <td><%= app.phone %></td>
   <td><%= app.comment %></td>
   <td><%= app.created_at.getlocal.strftime('%Y-%m-%d %H:%M') %></td>
-  <td class="<%= td_style.keys.include?(app.status) ? td_style[app.status] : td_style[nil] %>"><%= app.status ? app.status : 'unaudited' %></td>
+  <td class="<%= td_style.keys.include?(app.status) ? td_style[app.status] : td_style[nil] %>"><%= status_words.include?(app.status) ? status_words[app.status] : '未审核' %></td>
 
 </tr>

@@ -20,7 +20,7 @@ class Account < ActiveRecord::Base
   before_save :encrypt_password, :if => :password_required
 
   def before_create
-    self.role = 'user'
+    self.role = ''
   end
 
   ##
@@ -34,6 +34,10 @@ class Account < ActiveRecord::Base
   def has_password?(password)
     ::BCrypt::Password.new(crypted_password) == password
   end
+
+  def is_admin?
+     self.role == 'admin'
+   end
 
   private
   def encrypt_password

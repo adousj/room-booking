@@ -1,38 +1,11 @@
-<div class="row-fluid">
-  <!-- <h1>New Account</h1> -->
-</div>
+<div class="row">
+  <div class="span7 offset1">
 
-<div class="row-fluid">
-  <div class="span6 offset3 login-form">
-
-<% form_tag url(:accounts, :create), :class => 'create-form', :method => 'post' do %>
-  <%= flash_tag(:notice, :class => 'alter alter-eror') %>
-  <% field_set_tag do %>
-    <div class="control-group">
-      <%= label_tag '用户名' %>
-      <%= text_field_tag :username %>
+    <div class="tabs-content">
+      <% form_for :account, url(:accounts, :create), :class => 'form-horizontal' do |f| %>
+        <%= partial 'accounts/form', :locals => { :f => f } %>
+     <% end %>
     </div>
-    <div class="control-group">
-      <%= label_tag '学号' %>
-      <%= text_field_tag :second_name %>
-    </div>
-    <div class="control-group">
-      <%= label_tag '邮箱' %>
-      <%= email_field_tag :email %>
-    </div>
-    <div class="control-group">
-      <%= label_tag '密码' %>
-      <%= password_field_tag :password %>
-    </div>
-    <div class="control-group">
-      <%= label_tag '确认密码' %>
-      <%= password_field_tag :password_confirm %>
-    </div>
-    <div class="control-group">
-      <%= submit_tag "注 册", :class => 'btn btn-primary btn-large' %>
-    </div>
-  <% end %>
-<% end %>
-
+ 
   </div>
 </div>

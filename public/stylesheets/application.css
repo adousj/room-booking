@@ -1,4 +1,8 @@
 
+.sidebar {
+  background-color: #dddddd;
+}
+
 table#room-table {
   background: #ECF0F1;
 }
@@ -35,9 +39,27 @@ input {
   font-size: 16pt;
 }
 
-.navbar #logo {
-  /*background-image: url("/images/logo.png");*/
-  margin: 0;
-  padding: 0;
-  border: 0;
+td.room_app_used {
+  background-color: red; /*#FF005D;*/
+}
+
+td.room_app_used.room_app_timeout {
+  background-color: #888888;
+}
+
+#logo {
+  text-decoration: none;
+}
+
+.footer {
+  background-color: #515251;
+  margin: 20px;
+  line-height: 300%;
+  vertical-align: text-bottom;
+  color: white;
+  text-align: center;
+}
+
+.content {
+  background-color: #cccccc;
 }

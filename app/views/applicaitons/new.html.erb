@@ -1,9 +1,6 @@
-<div class="row-fluid">
-  <!-- <h1>New Application</h1> -->
-</div>
 
-<div class="row-fluid">
-  <div class="span4 offset4 login-form">
+<div class="row">
+  <div class="login-form">
 
 <% form_tag url(:apps, :create), :class => 'form form-horizontal', :method => 'post' do %>
   <%= flash_tag(:notice, :class => 'alert alert-danger') %>

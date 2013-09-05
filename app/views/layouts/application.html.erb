@@ -7,7 +7,8 @@
     <link href="/flat-ui/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="/flat-ui/css/flat-ui.css" rel="stylesheet">
     <link href="/bootstrap-datepicker/css/datepicker.css" rel="stylesheet">
-    <link href="/stylesheets/application.css" rel="stylesheet">
+    <!-- <link href="/stylesheets/application.css" rel="stylesheet"> -->
+    <%= stylesheet_link_tag 'application' %>
     <!-- <link rel="shortcut icon" href="images/favicon.ico"> -->
   </head>
 
@@ -24,16 +25,16 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </a>
-                            <!-- <img src="/images/logo.png" alt=""> -->
-                            <!-- <a href="<%= url(:accounts, :index) %>" class="brand" date-name=""></a> -->
                             <div class="nav-collapse collapse navbar-responsive-collapse">
                                 <ul class="nav">
-                                    <li><a id="logo" href="http://chuangye.sjtu.edu.cn"><img src="/images/logo.png" alt="http://chuangye.sjtu.edu.cn" href="http://chuangye.sjtu.edu.cn"></a></li>
-                                    <!-- <li><a href="#">教室借阅系统</a></li> -->
+                                    <li>
+                                        <h3><a href="http://chuangye.sjtu.edu.cn" id="logo">上海交通大学 创业学院</a></h3>
+                                        <h4 align="center">小组讨论室预约系统</h4>
+                                    </li>
                                 </ul>
-                                <ul class="nav">
+                                <!-- <ul class="nav">
                                     <li><a href="#" style="font-size: 20pt">讨论室借阅系统</a></li>
-                                </ul>
+                                </ul> -->
                                 <!-- <ul class="nav">
                                     <li class="active">
                                         <a href="#">主页</a>
@@ -71,10 +72,10 @@
                                     </li>
                                 </ul> -->
                                 <ul class="nav pull-right">
-                                    <!-- <li><a href="http://chuangye.sjtu.edu.cn">chuangye</a></li> -->
-                                    <li><a href="<%= url(:accounts, :index) %>"><i class="icon-home icon-large"></i>首页</a></li>
-                                    <!-- <li class="divider-vertical"></li> -->
-                                    <% if @current_account or account_authenticate %>
+                                    <li><%= link_to '首页', url(:index) %></li>
+                                    <li><%= link_to '预约规则', url(:rules) %></li>
+                                    <li><%= link_to '联系我们', url(:contact_us) %></li>
+                                   <!--  <% if @current_account %>
                                         <li class="dropdown">
                                              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                                 <i class="icon-user icon-large"></i>
@@ -84,14 +85,14 @@
                                             <ul class="dropdown-menu">
                                                 <li><a href="<%= url(:messages, :index) %>">消息</a></li>
                                                 <li><a href="<%= url(:applications, :index) %>">申请</a></li>
+                                                <li><%= link_to '编辑资料', url(:accounts, :edit) %></li>
                                                 <li class="divider"></li>
                                                 <li><a href="<%= url(:accounts, :logout) %>">注销</a></li>
-                                                <!-- <li><a href="#">destroy</a></li> -->
                                             </ul>
                                         </li>
                                     <% else %>
                                         <li><a href="<%= url(:accounts, :login) %>"><i class="icon-lock"></i>登陆</a></li>
-                                    <% end %>
+                                    <% end %> -->
                                 </ul>
                             </div>
                             
@@ -102,31 +103,90 @@
             </div>
         </div>
 
-      
-      <%= [:error, :warning, :success, :notice].map { |type| flash_tag(type, :class => "alert alert-#{type} fade in", :bootstrap => true) }.join.html_safe %>
-      <%= yield %>
+      <div class="row-fluid">
+        <%= [:error, :warning, :success, :notice].map { |type| flash_tag(type, :class => "alert alert-#{type} fade in", :bootstrap => true) }.join.html_safe %>
+      </div>
+      <div class="row-fluid main-content">
+        <div class="span2 sidebar">
+
+            <div class="span12" style="margin: 20px 10px 3px;">
+                <h4>预约情况</h4>
+            </div>
+            <%= image_tag 'yuyue.png', :class => 'img-sidebar span5' %>
+            <div class="span6">
+                <ul style="list-style-type: none; margin-left: 10px;">
+                    <% if @current_account %>
+                        <li><%= link_to '消息', url(:applications, :index) %></li>
+                        <li><%= link_to '申请', url(:messages, :index) %></li>
+                        <li>&nbsp;</li>
+                        <li><%= link_to '退出', url(:accounts, :logout), :confirm => '确定退出？' %></li>
+                    <% else %>
+                        <li><%= link_to '请登录', url(:accounts, :login) %></li>
+                    <% end %>
+                </ul>
+            </div>
+
+            <div class="span12" style="margin: 20px 10px 3px;">
+                <h4>个人信息</h4>
+            </div>
+            <%= image_tag 'info.png', :class => 'img-sidebar span5' %>
+            <div class="span6">
+                <ul style="list-style-type: none; margin-left: 10px;">
+                  <% if @current_account %>
+                    <li><%= @current_account.name %></li>
+                    <li>&nbsp;</li>
+                    <li><%= link_to '更新', url(:accounts, :edit) %></li>
+                  <% else  %>
+                    <li>匿名</li>  
+                  <% end %>
+                </ul>
+            </div>
+
+            <div class="span12" style="margin: 20px 0;">
+                <%= image_tag 'qrcode.png', :class => 'img-rounded span12' %>
+            </div>
+        </div>
+        <div class="span10">
+            <div style="margin: 20px;">
+                <%= yield %>
+                <% if defined? @show_bottom_imgs %>
+                    <div class="row" style="margin-top: 20px;">
+                        <%= image_tag 'slide_img1.png', :class => 'span3' %>
+                        <%= image_tag 'slide_img2.png', :class => 'span3' %>
+                        <%= image_tag 'slide_img3.png', :class => 'span3' %>
+                        <%= image_tag 'slide_img4.png', :class => 'span3' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+      </div>
+
+      <div class="row-fluid footer img-rounded" >
+        <p></p>
+        <p>版权所有 &copy; 上海交通大学 创业学院 2013</p>
+      </div>
 
     </div>
 
     <!-- Load JS here for greater good =============================-->
     <!-- // <script type="text/javascript" src="jquery/jquery-1.10.2.js"></script> -->
-    <script type="text/javascript" src="/flat-ui/js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="/flat-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script type="text/javascript" src="/flat-ui/js/jquery.ui.touch-punch.min.js"></script>
-    <script type="text/javascript" src="/flat-ui/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/flat-ui/js/bootstrap-select.js"></script>
-    <script type="text/javascript" src="/flat-ui/js/bootstrap-switch.js"></script>
-    <!-- // <script type="text/javascript" src="/flat-ui/js/flatui-checkbox.js"></script> -->
-    <script type="text/javascript" src="/flat-ui/js/flatui-radio.js"></script>
-    <script type="text/javascript" src="/flat-ui/js/jquery.tagsinput.js"></script>
-    <script type="text/javascript" src="/flat-ui/js/jquery.placeholder.js"></script>
-    <script type="text/javascript" src="/flat-ui/js/jquery.stacktable.js"></script>
-    <script type="text/javascript" src="/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="/bootstrap-datepicker/js/locales/bootstrap-datepicker.zh-CN.js"></script>
-    
-    <!-- // <script type="text/javascript" src="http://vjs.zencdn.net/c/video.js"></script> -->
-    <!-- // <script type="text/javascript" src="/flat-ui/js/application.js"></script> -->
-    <script type="text/javascript" src="/javascripts/my.js"></script>
+    <%= javascript_include_tag '/flat-ui/js/jquery-1.8.3.min' %>
+    <%= javascript_include_tag 'jquery-ujs' %>
+    <%= javascript_include_tag '/flat-ui/js/jquery-ui-1.10.3.custom.min' %>
+    <%= javascript_include_tag "/flat-ui/js/jquery.ui.touch-punch.min" %>
+    <%= javascript_include_tag "/flat-ui/js/bootstrap.min" %>
+    <%= javascript_include_tag "/flat-ui/js/bootstrap-select" %>
+    <%= javascript_include_tag "/flat-ui/js/bootstrap-switch" %>
+    <%= javascript_include_tag "/flat-ui/js/flatui-checkbox" %>
+    <%= javascript_include_tag "/flat-ui/js/flatui-radio" %>
+    <%= javascript_include_tag "/flat-ui/js/jquery.tagsinput" %>
+    <%= javascript_include_tag "/flat-ui/js/jquery.placeholder" %>
+    <%= javascript_include_tag "/flat-ui/js/jquery.stacktable" %>
+    <%= javascript_include_tag "/bootstrap-datepicker/js/bootstrap-datepicker" %>
+    <%= javascript_include_tag "/bootstrap-datepicker/js/locales/bootstrap-datepicker.zh-CN" %>
+    <%= javascript_include_tag '/javascripts/my.js' %>
+    <%= javascript_include_tag url(:javascripts, :my, :format => :js) %>
+
   </body>
 
 </html>

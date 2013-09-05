@@ -7,4 +7,5 @@ RoomManagement::App.helpers do
   def account_authenticate
     @current_account = Account.authenticate(session[:email], session[:password])
   end
+
 end

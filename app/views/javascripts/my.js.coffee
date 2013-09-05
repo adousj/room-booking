@@ -28,21 +28,21 @@ $ ->
       $('table#room-table caption a#table-date').text(date_picked)
       # $('#datepicker').datepicker('remove')
       $('#myModal').modal('hide')
-      window.location = '/accounts/' + date_picked
+      window.location = '/day/' + date_picked
 
   table_td_hover_in = ->
     unless $(this).hasClass('chosen') or $(this).hasClass('neighbour')
       data_id = $(this).attr('data-id') - 0
       $(this).css('background-color', '#F39C12')
-      $('table#room-table tbody tr td[data-id="'+(data_id-10)+'"]:not(.chosen):not(.neighbour)').css('background-color', '#F1C40F')
-      $('table#room-table tbody tr td[data-id="'+(data_id+10)+'"]:not(.chosen):not(.neighbour)').css('background-color', '#F1C40F')
+      $('table#room-table tbody tr td.table-item[data-id="'+(data_id-10)+'"]:not(.chosen):not(.neighbour)').css('background-color', '#F1C40F')
+      $('table#room-table tbody tr td.table-item[data-id="'+(data_id+10)+'"]:not(.chosen):not(.neighbour)').css('background-color', '#F1C40F')
 
   table_td_hover_out = ->
     unless $(this).hasClass('chosen') or $(this).hasClass('neighbour')
       data_id = $(this).attr('data-id') - 0
       $(this).css('background-color', '#ECF0F1')
-      $('table#room-table tbody tr td[data-id="'+(data_id-10)+'"]:not(.chosen):not(.neighbour)').css('background-color', '#ECF0F1')
-      $('table#room-table tbody tr td[data-id="'+(data_id+10)+'"]:not(.chosen):not(.neighbour)').css('background-color', '#ECF0F1')
+      $('table#room-table tbody tr td.table-item[data-id="'+(data_id-10)+'"]:not(.chosen):not(.neighbour)').css('background-color', '#ECF0F1')
+      $('table#room-table tbody tr td.table-item[data-id="'+(data_id+10)+'"]:not(.chosen):not(.neighbour)').css('background-color', '#ECF0F1')
 
   $('table#room-table tbody tr td.table-item').hover table_td_hover_in, table_td_hover_out
 
@@ -82,8 +82,8 @@ $ ->
       # $('table#room-table tbody tr td[data-id='+(data_id-10)+']').css('background-color', '#F1C40F').attr('neighbour', 'neighbour')
       # $('table#room-table tbody tr td[data-id='+(data_id+10)+']').css('background-color', '#F1C40F').attr('neighbour', 'neighbour')
       # console.log $('table#room-table tbody tr td[data-id="'+(data_id-1)+'"]')
-      $('table#room-table tbody tr td[data-id="'+(data_id-10)+'"]').css('background-color', '#F39C12').addClass('neighbour')
-      $('table#room-table tbody tr td[data-id="'+(data_id+10)+'"]').css('background-color', '#F39C12').addClass('neighbour')
+      $('table#room-table tbody tr td.table-item[data-id="'+(data_id-10)+'"]').css('background-color', '#F39C12').addClass('neighbour')
+      $('table#room-table tbody tr td.table-item[data-id="'+(data_id+10)+'"]').css('background-color', '#F39C12').addClass('neighbour')
 
 
   $('.msg-switch').on 'change', ->

@@ -9,6 +9,10 @@ padrino start
 + adousj@sjtu.edu.cn
 + nishi..
 
+# production
++ chuangye@sjtu.edu.cn
++ chuangye2013
+
 ## Todo
 + route
 + page
@@ -17,7 +21,7 @@ padrino start
 + bootstrap
 
 ## rspec
-+ tool to run by save
++ run test by save
 
 ## models
 + accounts
@@ -43,7 +47,7 @@ padrino start
   belongs_to :user
 
 
-## route
+## router
 + index file
 get /
 

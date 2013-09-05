@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module RoomManagement
   class App < Padrino::Application
     register SassInitializer
@@ -5,6 +7,8 @@ module RoomManagement
     register Padrino::Rendering
     register Padrino::Mailer
     register Padrino::Helpers
+    register Padrino::Admin::AccessControl
+
 
     enable :sessions
 
@@ -47,9 +51,9 @@ module RoomManagement
     # disable :store_location
 
     # access_control.roles_for :any do |role|
-      # role.protect '/'
-      # role.allow   '/sessions'
-      # role.allow [url(:accounts)]
+    # role.protect '/'
+    # role.allow   '/sessions'
+    # role.allow [url(:accounts)]
     # end
 
     # access_control.roles_for :admin do |role|
@@ -67,12 +71,56 @@ module RoomManagement
     #   end
     #
 
+    before do
+      @current_account = Account.authenticate(session[:email], session[:password])
+    end
+
+    get :index do
+      redirect url(:day, :date => Time.now.to_date)
+    end
+
+    get :day, :with => :date do
+      @show_bottom_imgs = true
+      if params[:date].nil? or not params[:date].respond_to?(:to_date)
+        @current_date = Time.now.to_date
+      else
+        @current_date = params[:date].to_date
+      end
+      if account_authenticate and defined?(@current_account) and @current_account.is_admin? 
+        @start_date = Time.new(0).to_date
+      else
+        @start_date = Time.now.to_date
+      end
+      @end_date = Chronic.parse('7 days after now').to_date
+      if @current_date and @start_date<=@current_date and @current_date<=@end_date
+        @time_line = @current_date==@start_date ? ((Time.now-15*60).getlocal.hour+1)*10 : -1
+        today_start_time = Chronic.parse '9:00', :now => @current_date
+        today_end_time = Chronic.parse '17:00', :now => @current_date
+        apps = Application.find(:all, :conditions => ['start_at>? and end_at<? and status=?', today_start_time, today_end_time, Application.statuses[:approved]])
+        @apps = apps.map { |app|
+          (app.start_at.getlocal.hour...app.end_at.getlocal.hour).map {|h| h*10+app.room_id}
+        }.inject(&:+) || []
+        render 'index'
+      else
+        flash[:error] = '对不起，请选择有效申请时间~'
+        redirect url(:day, :date => Time.now.to_date)
+      end
+    end
+
+    get :rules do
+      render 'rules'
+    end
+
+    get :contact_us do
+      render 'contact_us'
+    end
+
     ##
     # You can manage errors like:
     #
-    #   error 404 do
-    #     render 'errors/404'
-    #   end
+    error 404 do
+      render 'errors/404'
+    end
     #
     #   error 505 do
     #     render 'errors/505'

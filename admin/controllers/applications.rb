@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 RoomManagement::Admin.controllers :applications do
   get :index do
     @title = "Applications"
@@ -61,7 +63,8 @@ RoomManagement::Admin.controllers :applications do
     redirect url(:applications, :index) unless app
     app.status = Application.statuses[:approved]
     flash[:error] = "agree #{params[:id]} save failed" unless app.save
-    unless app.account.messages.create(:content => "your application for room#{app.room_id} from #{app.start_at.getlocal.strftime('%Y-%m-%d  %H:%M')} ~ #{app.end_at.getlocal.strftime('%Y-%m-%d %H:%M')} approved")
+    time_in_word = "#{app.start_at.getlocal.strftime('%Y-%m-%d  %H:%M')} ~ #{app.end_at.getlocal.strftime('%Y-%m-%d %H:%M')}"
+    unless app.account.messages.create(:content => "您申请于 #{time_in_word} 使用讨论室 #{app.room_id} 预约通过了! :)")
       flash[:error] = "send message for #{params[:id]} failed"
     end
     redirect url(:applications, :index)
@@ -73,7 +76,8 @@ RoomManagement::Admin.controllers :applications do
     redirect url(:applications, :index) unless app
     app.status = Application.statuses[:denied]
     flash[:error] = "agree #{params[:id]} save failed" unless app.save
-    unless app.account.messages.create(:content => "your application for #{app.room_id} from #{app.start_at} to #{app.end_at} denied")
+    time_in_word = "#{app.start_at.getlocal.strftime('%Y-%m-%d  %H:%M')} ~ #{app.end_at.getlocal.strftime('%Y-%m-%d %H:%M')}"
+    unless app.account.messages.create(:content => "您申请于 #{time_in_word} 使用讨论室 #{app.room_id} 预约被拒绝! :(")
       flash[:error] = "send message for #{params[:id]} failed"
     end
     redirect url(:applications, :index)

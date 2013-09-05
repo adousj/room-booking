@@ -2,25 +2,6 @@
 
 RoomManagement::App.controllers :applications do
   
-  # get :index, :map => '/foo/bar' do
-  #   session[:foo] = 'bar'
-  #   render 'index'
-  # end
-
-  # get :sample, :map => '/sample/url', :provides => [:any, :js] do
-  #   case content_type
-  #     when :js then ...
-  #     else ...
-  # end
-
-  # get :foo, :with => :id do
-  #   'Maps to url '/foo/#{params[:id]}''
-  # end
-
-  # get '/example' do
-  #   'Hello world!'
-  # end
-
   before do
     redirect url(:accounts, :login) unless account_authenticate
   end
@@ -40,7 +21,7 @@ RoomManagement::App.controllers :applications do
   post :new do
     unless Rooom.rooms.keys.include? params[:room_id].to_sym
       flash[:error] = '对不起，您申请的房间不存在，请重新选择 ~'
-      redirect url(:accounts, :index)
+      redirect url(:index)
     end
     start_date_time = Time.now
     end_date_time = Chronic.parse('7 days after now at 00:00')
@@ -48,11 +29,11 @@ RoomManagement::App.controllers :applications do
     app_end_at = Chronic.parse params[:end_at]
     unless app_start_at and app_end_at and app_start_at>=start_date_time and app_end_at<=end_date_time
       flash[:error] = '对不起，请选择有效申请时间~'
-      redirect url(:accounts, :index)
+      redirect url(:index)
     end
     if params[:name] == ''
       flash[:error] = '姓名不能为空 :('
-      redirect url(:accounts, :index)
+      redirect url(:index)
     end
     app = @current_account.applications.build( :name => params[:name],
                                                :start_at => app_start_at,
@@ -66,7 +47,7 @@ RoomManagement::App.controllers :applications do
     else
       flash[:error] = '申请保存失败，请重新申请！'
     end
-      redirect url(:accounts, :index)
+      redirect url(:index)
   end
 
 end
