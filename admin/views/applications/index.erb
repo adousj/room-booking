@@ -66,20 +66,26 @@
           <td class=list-column> <%= application.account_id %> </td>
           <td class=list-column> <%= time_ago_in_words application.created_at %></td>
           <td class=list-column> <%= time_ago_in_words application.updated_at %></td>
-          <td class=list-column>
-            <%- form_tag url(:applications, :approve, :id => application.id), :method => :put do %>
-              <button type="submit" class="btn btn-success btn-small">
-                <i class="icon-ok"></i>
-              </button>
-            <% end %>
-          </td>
-          <td class=list-column>
-            <%- form_tag url(:applications, :deny, :id => application.id), :method => :put do %>
-              <button type="submit" class="btn btn-warning btn-small">
-                <i class="icon-remove"></i>
-              </button>
-            <% end %>
-          </td>
+          <% if application.status == Application.statuses[:unaudited] %>
+            <td class=list-column>
+              <%- form_tag url(:applications, :approve, :id => application.id), :method => :put do %>
+                <button type="submit" class="btn btn-success btn-small">
+                  <i class="icon-ok"></i>
+                </button>
+              <% end %>
+            </td>
+            <td class=list-column>
+              <%- form_tag url(:applications, :deny, :id => application.id), :method => :put do %>
+                <button type="submit" class="btn btn-warning btn-small">
+                  <i class="icon-remove"></i>
+                </button>
+              <% end %>
+            </td>
+          <% elsif application.status == Application.statuses[:approved]  %>
+            <td><a href="#" class="btn btn-success">已同意</a></td>
+          <% else %>
+            <td><a href="#" class="btn btn-warning">已拒绝</a></td>
+          <% end %>
           <td class="list-column list-row-action">
             <div class='list-row-action-wrapper'>
                <%= link_to tag_icon(:edit), :href => url(:applications, :edit, :id => application.id), :rel => :tooltip, :title => "#{pat(:edit)} application", :class => 'list-row-action-wrapper-link' %>

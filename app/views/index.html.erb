@@ -97,7 +97,7 @@
   <div class="control-group">
     <%= label_tag '姓名', :class => 'control-label' %>
     <div class="controls">
-      <%= text_field_tag :name, :required => true %>
+      <%= text_field_tag :name, :required => true, :value => @current_account ? @current_account.name : '' %>
     </div>
   </div>
 

@@ -4,7 +4,7 @@ RoomManagement::Admin.controllers :applications do
   get :index do
     @title = "Applications"
     @applications = Application.find_all_by_status(Application.statuses[:unaudited])
-    @applications += Application.find_all_by_status(nil)
+    @applications += Application.find_all_by_status [Application.statuses[:approved], Application.statuses[:denied]]
     render 'applications/index'
   end
 
