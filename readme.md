@@ -3,6 +3,9 @@
 ## run
 padrino start
 
+sjtucy@126.com
+sjtu2010
+
 ## test admin
 + chuangye@sjtu.edu.cn
 + chuangye2013

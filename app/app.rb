@@ -12,6 +12,17 @@ module RoomManagement
 
     enable :sessions
 
+    # mailer config
+    set :delivery_method, :smtp => { :address              => "smtp.126.com",
+                                     :port                 => 25,
+                                     :user_name            => 'sjtucy@126.com',
+                                     :password             => 'sjtu2010',
+                                     :authentication       => :plain,
+                                     :enable_starttls_auto => true
+                                     }
+    set :delivery_method, :test
+    set :mailer_defaults, :from => 'sjtucy@126.com'
+
     ##
     # Caching support
     #
@@ -86,7 +97,7 @@ module RoomManagement
       else
         @current_date = params[:date].to_date
       end
-      if account_authenticate and defined?(@current_account) and @current_account.is_admin? 
+      if account_authenticate and defined?(@current_account) and @current_account.is_admin?
         @start_date = Time.new(0).to_date
       else
         @start_date = Time.now.to_date
