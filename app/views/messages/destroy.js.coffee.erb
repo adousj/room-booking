@@ -1,0 +1,11 @@
+
+<% if @succeed %>
+  flash_success = '<div class="alert alert-success fade in">消息删除成功 :)<button type="button" class="close" data-dismiss="alert">×</button></div>'
+  $('.flash').append(flash_success)
+  $('.alert-success').delay(3000).remove
+  $('.msg-<%=params[:id] %>').remove()
+<% else %>
+  flash_error = '<div class="alert alert-error fade in">消息删除失败 :(<button type="button" class="close" data-dismiss="alert">×</button></div> %>'
+  $('flash').append(flash_error)
+  $('.alert-error').delay(3000).remove
+<% end %>

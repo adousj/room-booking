@@ -12,7 +12,7 @@
                    'approved' => '同意',
                    'denied' => '拒绝' }
 %>
-<tr class="<%= tr_style.keys.include?(app.status) ? tr_style[app.status] : tr_style[nil] %>">
+<tr class="app-<%=app.id %> <%= tr_style.keys.include?(app.status) ? tr_style[app.status] : tr_style[nil] %>">
 
   <td><%= app.id %></td>
   <td><%= app.name %></td>
@@ -24,6 +24,11 @@
   <td><%= app.phone %></td>
   <td><%= app.comment %></td>
   <td><%= app.created_at.getlocal.strftime('%Y-%m-%d %H:%M') %></td>
-  <td class="<%= td_style.keys.include?(app.status) ? td_style[app.status] : td_style[nil] %>"><%= status_words.include?(app.status) ? status_words[app.status] : '未审核' %></td>
+  <td class="<%= td_style.keys.include?(app.status) ? td_style[app.status] : td_style[nil] %>">
+    <%= status_words.include?(app.status) ? status_words[app.status] : '未审核' %>
+  </td>
+  <td>
+    <%= link_to tag_icon(:trash), url(:applications, :destroy, :id => app.id, :format => :js), :method => 'delete', :confirm => '确定删除？', :remote => true %>
+  </td>
 
 </tr>

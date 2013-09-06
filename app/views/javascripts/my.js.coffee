@@ -1,82 +1,83 @@
-# encoding: utf-8
 
-# $ ->
-#   empty_color = '#ECF0F1'
-#   chosen_color = '#D35400'
-#   neighbour_color = '#F39C12'
-#   hover_color = neighbour_color
-#   hover_neighbour_color = '#F1C40F'
-#   start_date = $("#datepicker").attr('data-start-date')
-#   end_date = $('#datepicker').attr('data-end-date')
-#   current_date = $('#datepicker').attr('data-date')
-#   # console.log  start_date, end_date
+$ ->
 
-#   $('#datepicker')
-#     .datepicker({
-#       format: "yyyy-mm-dd",
-#       todayBtn: "linked",
-#       language: "zh-CN",
-#       todayHighlight: true,
-#       startDate: start_date,
-#       endDate: end_date
-#     })
-#     .on 'changeDate', (e)->
-#       y = e.date.getFullYear()
-#       m = e.date.getMonth() + 1
-#       m = '0' + m if m<10
-#       d = e.date.getDate()
-#       d = '0' + d if d<10
-#       date_picked = y + '-' + m + '-' + d
-#       $('#room-table caption a#table-date').text(date_picked)
-#       # $('#datepicker').datepicker('remove')
-#       $('#myModal').modal('hide')
-#       window.location = '/day/' + date_picked
+  # $('.btn-delete').hide()
 
-#   table_td_hover_in = ->
-#     unless $(this).hasClass('chosen') or $(this).hasClass('neighbour')
-#       data_id = $(this).attr('data-id') - 0
-#       $(this).css('background-color', hover_color)
-#       $('#room-table td.table-item[data-id="'+(data_id-10)+'"]:not(.chosen):not(.neighbour)').css('background-color', hover_neighbour_color)
-#       $('#room-table td.table-item[data-id="'+(data_id+10)+'"]:not(.chosen):not(.neighbour)').css('background-color', hover_neighbour_color)
+  # btn_delete_hover_in = -> $(this).find(".btn-delete").fadeIn()
+  # btn_delete_hover_out = -> $(this).find('.btn-delete').fadeOut()
+  # $('tr').hover btn_delete_hover_in, btn_delete_hover_out
 
-#   table_td_hover_out = ->
-#     unless $(this).hasClass('chosen') or $(this).hasClass('neighbour')
-#       data_id = $(this).attr('data-id') - 0
-#       $(this).css('background-color', empty_color)
-#       $('#room-table td.table-item[data-id="'+(data_id-10)+'"]:not(.chosen):not(.neighbour)').css('background-color', empty_color)
-#       $('#room-table td.table-item[data-id="'+(data_id+10)+'"]:not(.chosen):not(.neighbour)').css('background-color', empty_color)
+  # empty_color = '#ECF0F1'
+  # chosen_color = '#D35400'
+  # neighbour_color = '#F39C12'
+  # hover_color = neighbour_color
+  # hover_neighbour_color = '#F1C40F'
+  # start_date = $("#datepicker").attr('data-start-date')
+  # end_date = $('#datepicker').attr('data-end-date')
+  # current_date = $('#datepicker').attr('data-date')
 
-#   $('#room-table td.table-item').hover table_td_hover_in, table_td_hover_out
+  # $('#datepicker')
+  #   .datepicker({
+  #     format: "yyyy-mm-dd",
+  #     todayBtn: "linked",
+  #     language: "zh-CN",
+  #     todayHighlight: true,
+  #     startDate: start_date,
+  #     endDate: end_date
+  #   })
+  #   .on 'changeDate', (e)->
+  #     y = e.date.getFullYear()
+  #     m = e.date.getMonth() + 1
+  #     m = '0' + m if m<10
+  #     d = e.date.getDate()
+  #     d = '0' + d if d<10
+  #     date_picked = y + '-' + m + '-' + d
+  #     $('#room-table caption a#table-date').text(date_picked)
+  #     # $('#datepicker').datepicker('remove')
+  #     $('#myModal').modal('hide')
+  #     window.location = '/day/' + date_picked
+
+  # table_td_hover_in = ->
+  #   unless $(this).hasClass('chosen') or $(this).hasClass('neighbour')
+  #     data_id = $(this).attr('data-id') - 0
+  #     $(this).css('background-color', hover_color)
+  #     $('#room-table td.table-item[data-id="'+(data_id-10)+'"]:not(.chosen):not(.neighbour)').css('background-color', hover_neighbour_color)
+  #     $('#room-table td.table-item[data-id="'+(data_id+10)+'"]:not(.chosen):not(.neighbour)').css('background-color', hover_neighbour_color)
+
+  # table_td_hover_out = ->
+  #   unless $(this).hasClass('chosen') or $(this).hasClass('neighbour')
+  #     data_id = $(this).attr('data-id') - 0
+  #     $(this).css('background-color', empty_color)
+  #     $('#room-table td.table-item[data-id="'+(data_id-10)+'"]:not(.chosen):not(.neighbour)').css('background-color', empty_color)
+  #     $('#room-table td.table-item[data-id="'+(data_id+10)+'"]:not(.chosen):not(.neighbour)').css('background-color', empty_color)
+
+  # $('#room-table td.table-item').hover table_td_hover_in, table_td_hover_out
 
 
-#   $('#room-table .table-item').bind 'click', (e)->
-#     data_id = $(this).attr('data-id') - 0
-#     console.log 0
-#     if $(this).hasClass('chosen') or $(this).hasClass('neighbour')
-#       console.log 1
-#       $('#appModal').modal { backdrop:'static' ,keyboard: false }
+  # $('#room-table .table-item').bind 'click', (e)->
+  #   data_id = $(this).attr('data-id') - 0
+  #   if $(this).hasClass('chosen') or $(this).hasClass('neighbour')
+  #     $('#appModal').modal { backdrop:'static' ,keyboard: false }
 
-#       chosen_id = $('#room-table td.table-item.chosen').attr('data-id') - 0
-#       room_id = data_id % 10
-#       min_t = Math.floor Math.min [data_id/10, chosen_id/10]...
-#       max_t = Math.floor Math.max [data_id/10+1, chosen_id/10+1]...
-#       $('.modal-body input[name=room_id]').val 'room'+room_id
-#       $('.modal-body input[name=time]').val current_date+'  '+min_t+':00 ~ '+max_t+':00'
-#       $('.modal-body input[name=start_at]').val current_date+'  '+min_t+':00'
-#       $('.modal-body input[name=end_at]').val current_date+'  '+max_t+':00'
+  #     chosen_id = $('#room-table td.table-item.chosen').attr('data-id') - 0
+  #     room_id = data_id % 10
+  #     min_t = Math.floor Math.min [data_id/10, chosen_id/10]...
+  #     max_t = Math.floor Math.max [data_id/10+1, chosen_id/10+1]...
+  #     $('.modal-body input[name=room_id]').val 'room'+room_id
+  #     $('.modal-body input[name=time]').val current_date+'  '+min_t+':00 ~ '+max_t+':00'
+  #     $('.modal-body input[name=start_at]').val current_date+'  '+min_t+':00'
+  #     $('.modal-body input[name=end_at]').val current_date+'  '+max_t+':00'
 
-#     else
-#       console.log 2
-#       data_id = $(this).attr('data-id') - 0
-#       $('#room-table td.chosen').css('background-color', empty_color).removeClass('chosen')
-#       $('#room-table td.neighbour').css('background-color', empty_color).removeClass('neighbour')
+  #   else
+  #     data_id = $(this).attr('data-id') - 0
+  #     $('#room-table td.chosen').css('background-color', empty_color).removeClass('chosen')
+  #     $('#room-table td.neighbour').css('background-color', empty_color).removeClass('neighbour')
 
-#       $(this).css('background-color', chosen_color).addClass('chosen')
-#       $('#room-table td.table-item[data-id="'+(data_id-10)+'"]').css('background-color', neighbour_color).addClass('neighbour')
-#       $('#room-table td.table-item[data-id="'+(data_id+10)+'"]').css('background-color', neighbour_color).addClass('neighbour')
+  #     $(this).css('background-color', chosen_color).addClass('chosen')
+  #     $('#room-table td.table-item[data-id="'+(data_id-10)+'"]').css('background-color', neighbour_color).addClass('neighbour')
+  #     $('#room-table td.table-item[data-id="'+(data_id+10)+'"]').css('background-color', neighbour_color).addClass('neighbour')
     
-
-
+      
   $('.msg-switch').on 'change', ->
     tr_row = $(this).closest('tr')
     msg_id = $(tr_row).attr('data-msg-id')

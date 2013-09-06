@@ -28,4 +28,10 @@ RoomManagement::App.controllers :messages do
     end
   end
 
+  delete :destroy, :with => :id, :provides => :js, :csrf_protection => false do
+    message = Message.find(params[:id])
+    @succeed = message.account == @current_account and message.destroy
+    render 'messages/destroy'
+  end
+
 end

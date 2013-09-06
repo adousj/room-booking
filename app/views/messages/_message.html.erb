@@ -1,5 +1,5 @@
 
-<tr class="<%= message.is_read ? 'success' : 'error' %>" data-msg-id="<%= message.id %>">
+<tr class="msg-<%=message.id %> <%= message.is_read ? 'success' : 'error' %>" data-msg-id="<%= message.id %>">
 
   <td>
     <strong><%= message.created_at.getlocal.strftime('%Y-%m-%d') %></strong> <%= message.created_at.getlocal.strftime('%H:%M') %>
@@ -9,6 +9,9 @@
     <div id="msg-switch<%= message.id %>" class="switch switch-square msg-switch" data-on-label="未读" data-off-label="已读">
       <input type="checkbox" <%= message.is_read ? 'unchecked' : 'checked' %> />
     </div>
+  </td>
+  <td>
+    <%= link_to tag_icon(:trash), url(:messages, :destroy, :id => message.id, :format => :js), :method => 'delete', :confirm => '确定删除？', :remote => true %>
   </td>
 
 </tr>
