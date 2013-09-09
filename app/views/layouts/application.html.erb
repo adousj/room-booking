@@ -84,7 +84,7 @@
                 <h4>我的信息</h4>
             </div>
             <%= image_tag 'info.png', :class => 'img-sidebar span5' %>
-            <div class="span6">
+            <div class="span6" style="margin-bottom: 40px;">
                 <h6 style="margin-top:0;">包括:</h6>
                 <ul style="list-style-type:none; margin-left:10px; margin-top:0;">
                   <% if @current_account %>
@@ -100,10 +100,10 @@
                 <%= yield %>
                 <% if defined? @show_bottom_imgs %>
                     <div class="row" style="margin-top: 20px;">
-                        <%= image_tag 'slide_img1.png', :class => 'span3' %>
-                        <%= image_tag 'slide_img2.png', :class => 'span3' %>
-                        <%= image_tag 'slide_img3.png', :class => 'span3' %>
-                        <%= image_tag 'slide_img4.png', :class => 'span3' %>
+                        <%= image_tag 'slide_img1.png', :class => 'span3 img-rounded img-polaroid' %>
+                        <%= image_tag 'slide_img2.png', :class => 'span3 img-rounded img-polaroid' %>
+                        <%= image_tag 'slide_img3.png', :class => 'span3 img-rounded img-polaroid' %>
+                        <%= image_tag 'slide_img4.png', :class => 'span3 img-rounded img-polaroid' %>
                     </div>
                 <% end %>
             </div>
