@@ -77,7 +77,8 @@ $ ->
   #     $('#room-table td.table-item[data-id="'+(data_id-10)+'"]').css('background-color', neighbour_color).addClass('neighbour')
   #     $('#room-table td.table-item[data-id="'+(data_id+10)+'"]').css('background-color', neighbour_color).addClass('neighbour')
     
-      
+
+$ ->      
   $('.msg-switch').on 'change', ->
     tr_row = $(this).closest('tr')
     msg_id = $(tr_row).attr('data-msg-id')

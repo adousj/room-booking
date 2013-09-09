@@ -21,7 +21,7 @@ RoomManagement::App.controllers :javascripts do
   
   get :my, :provides => :js do
     content_type :js
-    render 'javascripts/my.js'
+    render 'javascripts/my'
   end
 
 end

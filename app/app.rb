@@ -97,24 +97,29 @@ module RoomManagement
       else
         @current_date = params[:date].to_date
       end
-      if account_authenticate and defined?(@current_account) and @current_account.is_admin?
-        @start_date = Time.new(0).to_date
-      else
-        @start_date = Time.now.to_date
+      unless @current_date
+        flash[:error] = '对不起，请选择有效申请时间~'
+        redirect url(:day, :date => Time.now.to_date)
       end
+      @start_date = (@current_account and @current_account.is_admin?) ? Time.new(0).to_date : Time.now.to_date
       @end_date = Chronic.parse('7 days after now').to_date
-      if @current_date and @start_date<=@current_date and @current_date<=@end_date
-        @time_line = @current_date==@start_date ? ((Time.now-15*60).getlocal.hour+1)*10 : -1
+      if @start_date<=@current_date and @current_date<=@end_date
+        @time_line = @current_date==Time.now.to_date ? ((Time.now-15*60).getlocal.hour+1)*10 : -1
         today_start_time = Chronic.parse '9:00', :now => @current_date
         today_end_time = Chronic.parse '17:00', :now => @current_date
         apps = Application.find(:all, :conditions => ['start_at>? and end_at<? and status=?', today_start_time, today_end_time, Application.statuses[:approved]])
         @apps = apps.map { |app|
           (app.start_at.getlocal.hour...app.end_at.getlocal.hour).map {|h| h*10+app.room_id}
         }.inject(&:+) || []
+        p '-' * 100
+        p @current_date
+        p @start_date
+        p @end_date
+        p @time_line
+        p today_start_time
+        p today_end_time
+        p @apps
         render 'index'
-      else
-        flash[:error] = '对不起，请选择有效申请时间~'
-        redirect url(:day, :date => Time.now.to_date)
       end
     end
 

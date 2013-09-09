@@ -26,7 +26,7 @@
           <td class=""><strong><%= "#{i}:00" %></strong></td>
           <% for j in (1..7) %>
             <% room_app_id = i*10+j %>
-            <td class="<%= (@apps.include?(room_app_id) and ' room_app_used ') or (room_app_id<@time_line and 'room_app_used room_app_timeout') or 'table-item' %>" data-id="<%=room_app_id %>"></td>
+            <td class="<%= (@apps.include?(room_app_id) and 'room_app_used ') or (room_app_id<@time_line and 'room_app_used room_app_timeout') or 'table-item' %>" data-id="<%=room_app_id %>"></td>
           <% end %>
         </tr> 
       <% end %>
