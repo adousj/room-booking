@@ -122,8 +122,16 @@ module RoomManagement
       render 'rules'
     end
 
+    get :guides do
+      render 'guides'
+    end
+
     get :contact_us do
       render 'contact_us'
+    end
+
+    get :blacklist do
+      render 'blacklist'
     end
 
     ##
