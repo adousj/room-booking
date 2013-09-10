@@ -3,7 +3,7 @@
 RoomManagement::Admin.controllers :applications do
   get :index do
     @title = "Applications"
-    @applications = Application.find_all_by_status(Application.statuses[:unaudited])
+    @applications = Application.find_all_by_status [Application.statuses[:unaudited], nil, '']
     @applications += Application.find_all_by_status [Application.statuses[:approved], Application.statuses[:denied]]
     render 'applications/index'
   end
@@ -75,10 +75,13 @@ RoomManagement::Admin.controllers :applications do
     app = Application.find(params[:id])
     redirect url(:applications, :index) unless app
     app.status = Application.statuses[:denied]
-    flash[:error] = "agree #{params[:id]} save failed" unless app.save
+    unless app.save!
+      flash[:error] = "否决失败 :(" 
+      redirect url(:applications, :index)
+    end
     time_in_word = "#{app.start_at.getlocal.strftime('%Y-%m-%d  %H:%M')} ~ #{app.end_at.getlocal.strftime('%Y-%m-%d %H:%M')}"
     unless app.account.messages.create(:content => "您申请于 #{time_in_word} 使用讨论室 #{app.room_id} 预约被拒绝! :(")
-      flash[:error] = "send message for #{params[:id]} failed"
+      flash[:error] = "为用户 发送消息失败 :("
     end
     redirect url(:applications, :index)
    end

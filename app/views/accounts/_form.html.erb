@@ -36,7 +36,7 @@
 <% error = @account.errors.include?(:role) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <div class='controls'>
-    <%= f.hidden_field :role, :class => 'input-xlarge input-with-feedback', :value => @account.role or 'user' %>
+    <%= f.hidden_field :role, :class => 'input-xlarge input-with-feedback', :value => @account.role || 'user' %>
   </div>
 </fieldset>
 

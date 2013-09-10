@@ -26,7 +26,7 @@ RoomManagement::App.controllers :applications do
     end_date_time = Chronic.parse('7 days after now at 00:00')
     app_start_at = Chronic.parse params[:start_at]
     app_end_at = Chronic.parse params[:end_at]
-    unless app_start_at and app_end_at and app_start_at>=start_date_time and app_end_at<=end_date_time
+    unless app_start_at and app_end_at and start_date_time <= app_start_at and app_end_at<=end_date_time
       flash[:error] = '对不起，请选择有效申请时间~'
       redirect url(:index)
     end
@@ -41,7 +41,7 @@ RoomManagement::App.controllers :applications do
                                                :phone => params[:phone],
                                                :comment => params[:comment],
                                                :room_id => Rooom.rooms[params[:room_id].to_sym] )
-    if app.save
+    if app.save!
       flash[:success] = '申请提交成功，我们会尽快处理  :)'
     else
       flash[:error] = '申请保存失败，请重新申请！'

@@ -10,7 +10,7 @@ class Application < ActiveRecord::Base
   end
 
   def before_create
-    self.status = @@statuses[:unaudited]
+    status = @@statuses[:unaudited]
   end
 
   belongs_to :account

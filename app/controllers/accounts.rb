@@ -37,17 +37,17 @@ RoomManagement::App.controllers :accounts do
   end
 
   delete :destroy do
-    flash[:error] = "delete account #{@current_account.name} fialed!" unless @current_account.destroy
+    flash[:error] = "帐号 #{@current_account.name} 删除失败 :(" unless @current_account.destroy
     redirect url(:index)
   end
 
   post :create do
     @account = Account.new(params[:account])
     if @account.save
-      p flash[:success] = pat(:create_success, :model => 'Account')
+      flash[:success] = pat(:create_success, :model => 'Account')
       redirect url(:index)
     else
-      p flash.now[:error] = pat(:create_error, :model => 'account')
+      flash.now[:error] = pat(:create_error, :model => 'account')
       render 'accounts/new'
     end
   end

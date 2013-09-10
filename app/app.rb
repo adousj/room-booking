@@ -111,14 +111,6 @@ module RoomManagement
         @apps = apps.map { |app|
           (app.start_at.getlocal.hour...app.end_at.getlocal.hour).map {|h| h*10+app.room_id}
         }.inject(&:+) || []
-        p '-' * 100
-        p @current_date
-        p @start_date
-        p @end_date
-        p @time_line
-        p today_start_time
-        p today_end_time
-        p @apps
         render 'index'
       end
     end

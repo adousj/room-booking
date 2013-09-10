@@ -66,7 +66,7 @@
           <td class=list-column> <%= application.account_id %> </td>
           <td class=list-column> <%= time_ago_in_words application.created_at %></td>
           <td class=list-column> <%= time_ago_in_words application.updated_at %></td>
-          <% if application.status == Application.statuses[:unaudited] %>
+          <% if [Application.statuses[:unaudited], nil, ''].include? application.status %>
             <td class=list-column>
               <%- form_tag url(:applications, :approve, :id => application.id), :method => :put do %>
                 <button type="submit" class="btn btn-success btn-small">
