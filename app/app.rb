@@ -105,7 +105,7 @@ module RoomManagement
       @end_date = Chronic.parse('7 days after now').to_date
       if @start_date<=@current_date and @current_date<=@end_date
         @time_line = @current_date==Time.now.to_date ? ((Time.now-15*60).getlocal.hour+1)*10 : -1
-        today_start_time = Chronic.parse '9:00', :now => @current_date
+        today_start_time = Chronic.parse '9:0', :now => @current_date
         today_end_time = Chronic.parse '17:00', :now => @current_date
         apps = Application.find(:all, :conditions => ['start_at>? and end_at<? and status=?', today_start_time, today_end_time, Application.statuses[:approved]])
         @apps = apps.map { |app|
