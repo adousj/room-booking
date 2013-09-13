@@ -121,3 +121,7 @@ td.room_app_used {
 td.room_app_used.room_app_timeout {
   background-color: #888888;
 }
+
+.control-group {
+  display: inline;
+}
