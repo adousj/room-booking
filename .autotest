@@ -1,0 +1,6 @@
+
+
+require 'autotest/fsevent'
+require 'autotest/growl'
+
+#Autotest::Growl::image_dir = 'ampelmaennchen'
