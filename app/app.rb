@@ -20,8 +20,8 @@ module RoomManagement
                                      :authentication       => :plain,
                                      :enable_starttls_auto => true
                                      }
-    set :delivery_method, :test
     set :mailer_defaults, :from => 'sjtucy@126.com'
+    # set :delivery_method, :test # run in test
 
     ##
     # Caching support
@@ -127,7 +127,7 @@ module RoomManagement
     end
 
     get :blacklist do
-      render 'blacklist'
+      render 'black_list'
     end
 
     ##

@@ -2,13 +2,48 @@
 
 RoomManagement::App.controllers :accounts do
 
-  before :except => [:login, :new, :create] do
+  before :except => [:login, :new, :create, :new_password] do
     # @current_account = Account.authenticate(session[:email], session[:password])
     flash[:error] = '未找到此用户 :(' unless @current_account
   end
 
   get :login do
     render 'accounts/login'
+  end
+
+  get :new_password do
+    render 'accounts/new_password'
+  end
+
+  # params[:email]
+  post :new_password do
+    account = Account.where(email: params[:email]).first
+    if account
+      new_password = lambda {|n| (1..n).map{|i| (rand(25)+'a'.ord).chr}.join }
+      @new_password = new_password.call(10)
+      account.update_attributes(:password => @new_password)
+
+      # p '-' * 100
+      # p @new_password
+
+      # email do
+      #   from 'sjtucy@126.com'
+      #   to account.email
+      #   subject '重置密码'
+      #   locals  :new_password => @new_password
+      #   render 'account_email/new_password'
+      #   content_type :html
+      #   via :smtp
+      # end
+
+      deliver(:account_email, :new_password, account.email, @new_password)
+
+      flash[:success] = '邮件已经发送到您的邮箱,请查收'
+      redirect url(:accounts, :login)
+    elsif
+      flash[:error] = '邮箱不存在'
+      redirect url(:accounts, :forget)
+    end
   end
 
   post :login do

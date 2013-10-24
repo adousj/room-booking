@@ -20,8 +20,12 @@
     <div class="control-group" style="padding:20px 30px">
       <%= submit_tag '登 陆', :class => 'btn btn-primary btn-large btn-block' %>
     </div>
+
+    <br><br>
     <div class="control-group pull-right">
-      <a href="<%= url(:accounts, :new) %>">免费注册</span></a>
+      <%= link_to '免费注册', url(:accounts, :new) %>
+      &nbsp; &nbsp; &nbsp;
+      <%= link_to '忘记密码', url(:accounts, :new_password) %>
     </div>
   <% end %>
 <% end %>

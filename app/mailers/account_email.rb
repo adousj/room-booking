@@ -41,23 +41,27 @@
 # and then all delivered mail will use these settings unless otherwise specified.
 #
 
-RoomManagement::App.mailer :email do
-  defaults :content_type => 'html'
+RoomManagement::App.mailer :account_email do
+  # defaults :content_type => 'html', :via => :smtp
 
   email :registration do |name, address|
     # from 'sjtucy@126.com'
     to address
     subject '欢迎注册'
     locals :name => name, :email => address
-    render 'registration'
+    render 'account_email/registration'
+    # content_type :html
+    # via :smtp
   end
 
   email :new_password do |address, new_password|
     # from 'sjtucy@126.com'
     to address
-    subject '找回密码'
-    locals :email => address
-    render 'new_password'
+    subject '创业学院 讨论室 找回密码'
+    locals :new_password => new_password
+    render 'account_email/new_password'
+    content_type :html
+    via :smtp
   end
 
 end

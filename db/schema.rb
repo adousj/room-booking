@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 8) do
   create_table "accounts", force: true do |t|
     t.string   "name"
     t.string   "surname"
-    t.string   "email"
+    t.string   "email", :null => false
     t.string   "crypted_password"
     t.string   "role"
     t.datetime "created_at"
@@ -24,12 +24,12 @@ ActiveRecord::Schema.define(version: 8) do
   end
 
   create_table "applications", force: true do |t|
-    t.string   "name"
+    t.string   "name", :null => false
     t.datetime "start_at"
     t.datetime "end_at"
     t.string   "email"
     t.string   "phone"
-    t.string   "status"
+    t.string   "status", :default => 'unaudited'
     t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
