@@ -42,7 +42,7 @@ RoomManagement::App.controllers :accounts do
       redirect url(:accounts, :login)
     elsif
       flash[:error] = '邮箱不存在'
-      redirect url(:accounts, :forget)
+      redirect url(:accounts, :new_password)
     end
   end
 

@@ -18,15 +18,15 @@ ActiveRecord::Schema.define(version: 8) do
     t.string   "surname"
     t.string   "email", :null => false
     t.string   "crypted_password"
-    t.string   "role"
+    t.string   "role", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "applications", force: true do |t|
     t.string   "name", :null => false
-    t.datetime "start_at"
-    t.datetime "end_at"
+    t.datetime "start_at", :null => false
+    t.datetime "end_at", :null => false
     t.string   "email"
     t.string   "phone"
     t.string   "status", :default => 'unaudited'
@@ -37,13 +37,18 @@ ActiveRecord::Schema.define(version: 8) do
     t.integer  "room_id"
   end
 
+  add_index :applications, :room_id
+  add_index :applications, :account_id
+
   create_table "messages", force: true do |t|
-    t.string   "content"
+    t.string   "content", :null => false
     t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_read"
+    t.boolean  "is_read", :null => false, :default => false
   end
+
+  add_index :messages, :account_id
 
   create_table "rooms", force: true do |t|
     t.string   "name"
