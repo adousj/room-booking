@@ -10,7 +10,7 @@
     <%= flash_tag(:notice, :class => 'alert alert-danger') %>
     <div class="control-group">
       <%= label_tag '邮箱' %>
-      <%= email_field_tag :email %>
+      <%= email_field_tag :email, :class => 'input-medium', :autofocus => true %>
     </div>
     <div class="control-group">
       <%= label_tag '密码' %>
