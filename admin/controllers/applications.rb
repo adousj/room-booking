@@ -3,8 +3,8 @@
 RoomManagement::Admin.controllers :applications do
   get :index do
     @title = "Applications"
-    @applications = Application.find_all_by_status [Application.statuses[:unaudited], nil, '']
-    @applications += Application.find_all_by_status [Application.statuses[:approved], Application.statuses[:denied]]
+    @applications = Application.order("id desc").where(status: [Application.statuses[:unaudited], nil, ''])
+    @applications += Application.order("id desc").where(status: [Application.statuses[:approved], Application.statuses[:denied]])
     render 'applications/index'
   end
 

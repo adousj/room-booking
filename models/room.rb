@@ -5,13 +5,7 @@ class Room < ActiveRecord::Base
 end
 
 class Rooom
-  @@rooms = { :room1 => 1,
-              :room2 => 2,
-              :room3 => 3,
-              :room4 => 4,
-              :room5 => 5,
-              :room6 => 6,
-              :room7 => 7 }
+  @@rooms = (1..14).map {|i| eval "{ :room#{i} => i}" }.inject &:merge
 
   @@rooms.keys.each do |key|
     eval """

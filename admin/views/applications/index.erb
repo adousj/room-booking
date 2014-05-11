@@ -42,7 +42,7 @@
                 <th class=header> <%= mat(:application, :end_at) %></th>
                 <th class=header> <%= mat(:application, :email) %></th>
                 <th class=header> <%= mat(:application, :phone) %></th>
-                <th class=header> <%= mat(:application, :account_id) %></th>
+                <th class=header> <%= mat(:application, '申请id') %></th>
                 <th class=header> <%= mat(:application, :created_at) %></th>
                 <th class=header> <%= mat(:application, :updated_at) %></th>
                 <!-- <th class=header> <%= mat(:application, :status) %></th> -->
@@ -63,7 +63,7 @@
           <td class=list-column> <%= application.end_at %> </td>
           <td class=list-column> <%= application.email %> </td>
           <td class=list-column> <%= application.phone %> </td>
-          <td class=list-column> <%= application.account_id %> </td>
+          <td class=list-column> <%= application.account.try(:name) %> </td>
           <td class=list-column> <%= time_ago_in_words application.created_at %></td>
           <td class=list-column> <%= time_ago_in_words application.updated_at %></td>
           <% if [Application.statuses[:unaudited], nil, ''].include? application.status %>

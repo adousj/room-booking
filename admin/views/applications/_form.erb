@@ -6,6 +6,7 @@
     <span class='help-inline'><%= error ? f.error_message_on(:name) : "Ex: a simple text" %></span>
   </div>
 </fieldset>
+
 <% error = @application.errors.include?(:start_at) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :start_at, :class => 'control-label' %>
@@ -14,6 +15,7 @@
     <span class='help-inline'><%= error ? f.error_message_on(:start_at) : "Ex: a simple text" %></span>
   </div>
 </fieldset>
+
 <% error = @application.errors.include?(:end_at) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :end_at, :class => 'control-label' %>
@@ -22,6 +24,7 @@
     <span class='help-inline'><%= error ? f.error_message_on(:end_at) : "Ex: a simple text" %></span>
   </div>
 </fieldset>
+
 <% error = @application.errors.include?(:email) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :email, :class => 'control-label' %>
@@ -30,6 +33,7 @@
     <span class='help-inline'><%= error ? f.error_message_on(:email) : "Ex: a simple text" %></span>
   </div>
 </fieldset>
+
 <% error = @application.errors.include?(:phone) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :phone, :class => 'control-label' %>
@@ -38,6 +42,7 @@
     <span class='help-inline'><%= error ? f.error_message_on(:phone) : "Ex: a simple text" %></span>
   </div>
 </fieldset>
+
 <% error = @application.errors.include?(:account_id) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :account_id, :class => 'control-label' %>
@@ -46,6 +51,7 @@
     <span class='help-inline'><%= error ? f.error_message_on(:account_id) : "Ex: a simple text" %></span>
   </div>
 </fieldset>
+
 <% error = @application.errors.include?(:status) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :status, :class => 'control-label' %>
@@ -55,6 +61,21 @@
   </div>
 </fieldset>
 
+<% error = @application.errors.include?(:team_type) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+  <%= f.label :team_type, :value => '团队性质', :class => 'control-label' %>
+  <div class='controls'>
+    <%= select_tag :team_type, :options => [['挑战杯', '1'], ['训练项目', '2'], ['宣怀办', '3'], ['其他', '4']], :selected => @application.team_type %>
+  </div>
+</fieldset>
+
+<% error = @application.errors.include?(:comment) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+  <%= f.label :comment, :value => '使用详情', :class => 'control-label' %>
+  <div class='controls'>
+    <%= text_area_tag :comment, :value => @application.comment, :rows => 5, :class => 'input-xlarge input-with-feedback' %>
+  </div>
+</fieldset>
 
 <div class="form-actions">
   <%= f.submit pat(:save), :class => 'btn btn-primary' %>

@@ -9,48 +9,44 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended that you check this file into your version control system.
+# It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 8) do
+ActiveRecord::Schema.define(:version => 9) do
 
-  create_table "accounts", force: true do |t|
+  create_table "accounts", :force => true do |t|
     t.string   "name"
     t.string   "surname"
-    t.string   "email", :null => false
+    t.string   "email"
     t.string   "crypted_password"
-    t.string   "role", :null => false
+    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "applications", force: true do |t|
-    t.string   "name", :null => false
-    t.datetime "start_at", :null => false
-    t.datetime "end_at", :null => false
+  create_table "applications", :force => true do |t|
+    t.string   "name"
+    t.datetime "start_at"
+    t.datetime "end_at"
     t.string   "email"
     t.string   "phone"
-    t.string   "status", :default => 'unaudited'
+    t.string   "status"
     t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "comment"
     t.integer  "room_id"
+    t.integer  "team_type"
   end
 
-  add_index :applications, :room_id
-  add_index :applications, :account_id
-
-  create_table "messages", force: true do |t|
-    t.string   "content", :null => false
+  create_table "messages", :force => true do |t|
+    t.string   "content"
     t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_read", :null => false, :default => false
+    t.boolean  "is_read"
   end
 
-  add_index :messages, :account_id
-
-  create_table "rooms", force: true do |t|
+  create_table "rooms", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

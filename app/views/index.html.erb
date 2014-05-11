@@ -15,26 +15,45 @@
 
     <thead>
       <tr>
-        <th></th>
+        <th><h4>一楼</h4></th>
         <% for i in 1..7 %>
-          <th align="center"><strong>讨论室 <%=i %></strong></th>
+          <th><strong>讨论室 <%=i %></strong></th>
         <% end %>
       </tr>
+    </thead>
     <tbody>
       <% for i in (9..16) %> 
         <tr>
           <td class=""><strong><%= "#{i}:00" %></strong></td>
           <% for j in (1..7) %>
-            <% room_app_id = i*10+j %>
+            <% room_app_id = i*100+j %>
             <td class="<%= (@apps.include?(room_app_id) and 'room_app_used ') or (room_app_id<@time_line and 'room_app_used room_app_timeout') or 'table-item' %>" data-id="<%=room_app_id %>"></td>
           <% end %>
         </tr> 
       <% end %>
     </tbody>
 
+    <thead>
+      <tr>
+        <th><h4>二楼</h4></th>
+        <% for i in 8..14 %>
+          <th><strong>讨论室 <%=i %></strong></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% for i in (9..16) %> 
+        <tr>
+          <td class=""><strong><%= "#{i}:00" %></strong></td>
+          <% for j in (8..14) %>
+            <% room_app_id = i*100+j %>
+            <td class="<%= (@apps.include?(room_app_id) and 'room_app_used ') or (room_app_id<@time_line and 'room_app_used room_app_timeout') or 'table-item' %>" data-id="<%=room_app_id %>"></td>
+          <% end %>
+        </tr> 
+      <% end %>
     </tbody>
-  </table>
 
+  </table>
 </div>
 
 <div class="row">
@@ -79,7 +98,7 @@
       <%= flash_tag(:notice, :class => 'alert alert-danger') %>
 
       <div class="control-group">
-        <%= label_tag '教室', :class => 'control-label' %>
+        <%= label_tag '讨论室', :class => 'control-label' %>
         <div class="controls">
           <%= text_field_tag :room_id, :readonly => true %>
         </div>
@@ -106,10 +125,17 @@
         </div>
       </div>
 
-      <div class="control-group">
+      <!-- <div class="control-group">
         <%= label_tag '邮箱 (可选)', :class => 'control-label' %>
         <div class="controls">
           <%= email_field_tag :email %>
+        </div>
+      </div> -->
+
+      <div class="control-group">
+        <%= label_tag '团队性质', :class => 'control-label' %>
+        <div class="controls">
+          <%= select_tag :team_type, :options => [['挑战杯', '1'], ['训练项目', '2'], ['宣怀办', '3'], ['其他', '4']], :selected => 1 %>
         </div>
       </div>
 
@@ -121,9 +147,9 @@
       </div>
 
       <div class="control-group">
-        <%= label_tag '附言 (可选)', :class => 'control-label' %>
+        <%= label_tag '使用详情(用途,参与人姓名,如有校外人员需注明)', :class => 'control-label' %>
         <div class="controls">
-          <%= text_field_tag :commet %>
+          <%= text_area_tag :comment, :rows => 3 %>
         </div>
       </div>
 
