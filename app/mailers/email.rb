@@ -41,7 +41,7 @@
 # and then all delivered mail will use these settings unless otherwise specified.
 #
 
-RoomManagement::App.mailer :email do
+RoomBooking::App.mailer :email do
   defaults :content_type => 'html'
 
   email :registration do |name, address|

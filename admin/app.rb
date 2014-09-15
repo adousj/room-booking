@@ -1,4 +1,4 @@
-module RoomManagement
+module RoomBooking
   class Admin < Padrino::Application
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
     register Padrino::Rendering

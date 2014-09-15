@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-RoomManagement::App.controllers :accounts do
+RoomBooking::App.controllers :accounts do
 
   before :except => [:login, :new, :create, :new_password] do
     # @current_account = Account.authenticate(session[:email], session[:password])

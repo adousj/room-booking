@@ -1,4 +1,4 @@
-RoomManagement::App.controllers :messages do
+RoomBooking::App.controllers :messages do
 
   before do
     redirect url(:accounts, :login) unless account_authenticate

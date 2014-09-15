@@ -1,4 +1,4 @@
-RoomManagement::App.controllers :javascripts do
+RoomBooking::App.controllers :javascripts do
   
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'

@@ -1,4 +1,4 @@
-RoomManagement::Admin.controllers :sessions do
+RoomBooking::Admin.controllers :sessions do
   get :new do
     render "/sessions/new", nil, :layout => false
   end

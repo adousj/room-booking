@@ -1,4 +1,4 @@
-RoomManagement::Admin.controllers :accounts do
+RoomBooking::Admin.controllers :accounts do
   get :index do
     @title = "Accounts"
     @accounts = Account.all

@@ -34,6 +34,6 @@ Padrino.configure_apps do
 end
 
 # Mounts the core application for this project
-Padrino.mount('RoomManagement::App', :app_file => Padrino.root('app/app.rb')).to('/')
+Padrino.mount('RoomBooking::App', :app_file => Padrino.root('app/app.rb')).to('/')
 
-Padrino.mount("RoomManagement::Admin", :app_file => File.expand_path('../../admin/app.rb', __FILE__)).to("/admin")
+Padrino.mount("RoomBooking::Admin", :app_file => File.expand_path('../../admin/app.rb', __FILE__)).to("/admin")

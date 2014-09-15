@@ -11,9 +11,9 @@ end
 # You can use this method to custom specify a Rack app
 # you want rack-test to invoke:
 #
-#   app RoomManagement::App
-#   app RoomManagement::App.tap { |a| }
-#   app(RoomManagement::App) do
+#   app RoomBooking::App
+#   app RoomBooking::App.tap { |a| }
+#   app(RoomBooking::App) do
 #     set :foo, :bar
 #   end
 #

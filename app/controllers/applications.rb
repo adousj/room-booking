@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-RoomManagement::App.controllers :applications do
+RoomBooking::App.controllers :applications do
 
   before do
     redirect url(:accounts, :login) unless account_authenticate

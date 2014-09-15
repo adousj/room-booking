@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module RoomManagement
+module RoomBooking
   class App < Padrino::Application
     register SassInitializer
     use ActiveRecord::ConnectionAdapters::ConnectionManagement

@@ -1,4 +1,4 @@
-RoomManagement::Admin.controllers :messages do
+RoomBooking::Admin.controllers :messages do
   get :index do
     @title = "Messages"
     @messages = Message.all

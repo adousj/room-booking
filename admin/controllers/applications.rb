@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-RoomManagement::Admin.controllers :applications do
+RoomBooking::Admin.controllers :applications do
   get :index do
     @title = "Applications"
     @applications = Application.order("id desc").where(status: [Application.statuses[:unaudited], nil, ''])
