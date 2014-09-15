@@ -20,6 +20,8 @@ gem 'erubis', '~> 2.7.0'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'sqlite3'
 
+gem 'unicorn', :require => false
+
 # Test requirements
 group :test, :development do
   gem 'rspec'
