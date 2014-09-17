@@ -116,14 +116,17 @@ module RoomBooking
     end
 
     get :rules do
+      @post = Post.first
       render 'rules'
     end
 
     get :guides do
+      @post = Post.offset(1)
       render 'guides'
     end
 
     get :contact_us do
+      @post = Post.offset(2)
       render 'contact_us'
     end
 

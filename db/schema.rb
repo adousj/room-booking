@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 9) do
+ActiveRecord::Schema.define(:version => 10) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(:version => 9) do
     t.string   "email"
     t.string   "crypted_password"
     t.string   "role"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "applications", :force => true do |t|
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(:version => 9) do
     t.string   "phone"
     t.string   "status"
     t.integer  "account_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "comment"
     t.integer  "room_id"
     t.integer  "team_type"
@@ -41,15 +41,22 @@ ActiveRecord::Schema.define(:version => 9) do
   create_table "messages", :force => true do |t|
     t.string   "content"
     t.integer  "account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_read"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.boolean  "is_read"
   end
 
   create_table "rooms", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

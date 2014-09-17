@@ -31,3 +31,20 @@ else
 end
 
 shell.say ""
+
+shell.say "创建“使用规则”、“使用说明”"
+
+Post.create([
+    {
+      title: '使用规则',
+      content: '使用规则如下:'
+    },
+    {
+      title: '使用说明',
+      content: '使用说明如下:'
+    },
+    {
+      title: '联系我们',
+      content: '请通过如下方式联系我们:'
+    }
+  ])
