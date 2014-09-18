@@ -27,11 +27,11 @@
                 <ul class="nav offset1 pull-left">
                     <li><%= link_to '首页', url(:index) %></li>
                     <li><a href="#">|</a></li>
-                    <li><%= link_to '使用规则', url(:rules) %></li>
+                    <li><%= link_to '使用规则', url(:home, :rules) %></li>
                     <li><a href="#">|</a></li>
-                    <li><%= link_to '使用说明', url(:guides) %></li>
+                    <li><%= link_to '使用说明', url(:home, :guides) %></li>
                     <li><a href="#">|</a></li>
-                    <li><%= link_to '联系我们', url(:contact_us) %></li>
+                    <li><%= link_to '联系我们', url(:home, :contact_us) %></li>
                 </ul>
                 <ul class="nav pull-right">
                     <% if @current_account %>
