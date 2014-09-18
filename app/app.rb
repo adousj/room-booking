@@ -117,17 +117,17 @@ module RoomBooking
 
     get :rules do
       @post = Post.first
-      render 'rules'
+      render 'post'
     end
 
     get :guides do
-      @post = Post.offset(1)
-      render 'guides'
+      @post = Post.offset(1).first
+      render 'post'
     end
 
     get :contact_us do
-      @post = Post.offset(2)
-      render 'contact_us'
+      @post = Post.offset(2).first
+      render 'post'
     end
 
     get :blacklist do
