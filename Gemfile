@@ -11,7 +11,7 @@ source 'http://ruby.taobao.org'
 # gem 'oj'
 
 # Project requirements
-gem 'rake', '10.1.0'
+gem 'rake'
 
 # Component requirements
 gem 'bcrypt-ruby', :require => 'bcrypt'
@@ -19,8 +19,6 @@ gem 'sass'
 gem 'erubis', '~> 2.7.0'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'sqlite3'
-
-gem 'unicorn', :require => false
 
 # Test requirements
 group :test, :development do
@@ -33,7 +31,7 @@ group :test, :development do
 end
 
 # Padrino Stable Gem
-gem 'padrino', '0.11.3'
+gem 'padrino'#, '0.11.3'
 
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
