@@ -46,7 +46,7 @@ RoomBooking::App.controllers :accounts do
     end
   end
 
-  post :login do
+  post :login, :csrf_protection => false do
     if Account.authenticate(params[:email], params[:password])
       session[:email], session[:password] = params[:email], params[:password]
       flash[:success] = '登陆成功 :)'

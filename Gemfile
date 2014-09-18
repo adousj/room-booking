@@ -11,7 +11,7 @@ source 'http://ruby.taobao.org'
 # gem 'oj'
 
 # Project requirements
-gem 'rake'
+gem 'rake', '10.1.0'
 
 # Component requirements
 gem 'bcrypt-ruby', :require => 'bcrypt'
@@ -33,7 +33,7 @@ group :test, :development do
 end
 
 # Padrino Stable Gem
-gem 'padrino'#, '0.11.3'
+gem 'padrino', '0.11.3'
 
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'

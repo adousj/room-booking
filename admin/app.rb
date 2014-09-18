@@ -37,6 +37,7 @@ module RoomBooking
       role.project_module :applications, '/applications'
       role.project_module :messages, '/messages'
       role.project_module :accounts, '/accounts'
+      role.project_module :posts, '/posts'
     end
 
     # Custom error management 
