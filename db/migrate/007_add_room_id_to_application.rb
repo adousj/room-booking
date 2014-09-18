@@ -3,6 +3,8 @@ class AddRoomIdToApplication < ActiveRecord::Migration
     change_table :applications do |t|
       t.integer :room_id
     end
+
+    add_index :applications, :room_id
   end
 
   def self.down

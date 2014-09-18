@@ -8,6 +8,10 @@ class CreateAccounts < ActiveRecord::Migration
       t.string :role
       t.timestamps
     end
+
+    add_index :accounts, :role
+    add_index :accounts, :email
+    add_index :accounts, :name
   end
 
   def self.down

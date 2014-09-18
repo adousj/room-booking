@@ -3,6 +3,8 @@ class AddIsReadToMessage < ActiveRecord::Migration
     change_table :messages do |t|
       t.boolean :is_read
     end
+
+    add_index :messages, :is_read
   end
 
   def self.down

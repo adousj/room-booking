@@ -5,6 +5,8 @@ class CreateMessages < ActiveRecord::Migration
       t.integer :account_id
       t.timestamps
     end
+
+    add_index :messages, :account_id
   end
 
   def self.down

@@ -10,6 +10,11 @@ class CreateApplications < ActiveRecord::Migration
       t.integer :account_id
       t.timestamps
     end
+
+    add_index :applications, :status
+    add_index :applications, :account_id
+    add_index :applications, :start_at
+    add_index :applications, :end_at
   end
 
   def self.down

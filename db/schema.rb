@@ -23,6 +23,10 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "accounts", ["email"], :name => "index_accounts_on_email"
+  add_index "accounts", ["name"], :name => "index_accounts_on_name"
+  add_index "accounts", ["role"], :name => "index_accounts_on_role"
+
   create_table "applications", :force => true do |t|
     t.string   "name"
     t.datetime "start_at"
@@ -38,6 +42,12 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "team_type"
   end
 
+  add_index "applications", ["account_id"], :name => "index_applications_on_account_id"
+  add_index "applications", ["end_at"], :name => "index_applications_on_end_at"
+  add_index "applications", ["room_id"], :name => "index_applications_on_room_id"
+  add_index "applications", ["start_at"], :name => "index_applications_on_start_at"
+  add_index "applications", ["status"], :name => "index_applications_on_status"
+
   create_table "messages", :force => true do |t|
     t.string   "content"
     t.integer  "account_id"
@@ -45,6 +55,9 @@ ActiveRecord::Schema.define(:version => 10) do
     t.datetime "updated_at", :null => false
     t.boolean  "is_read"
   end
+
+  add_index "messages", ["account_id"], :name => "index_messages_on_account_id"
+  add_index "messages", ["is_read"], :name => "index_messages_on_is_read"
 
   create_table "posts", :force => true do |t|
     t.string   "title"
