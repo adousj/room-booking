@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 RoomBooking::App.controllers :home, :map => '/' do
   
   # get :index, :map => '/foo/bar' do
