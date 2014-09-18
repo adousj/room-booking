@@ -3,7 +3,7 @@ RoomBooking::Admin.controllers :sessions do
     render "/sessions/new", nil, :layout => false
   end
 
-  post :create, :csrf_protection => false do
+  post :create do
     if account = Account.authenticate(params[:email], params[:password])
       set_current_account(account)
       redirect url(:base, :index)
