@@ -10,7 +10,7 @@
     <title><%= @title.present? ? "#{@title} | Padrino Admin" : "Padrino Admin" %></title>
     <%= favicon_tag "favicon.ico" %>
     <!-- <link href='http://fonts.googleapis.com/css?family=Varela' rel=stylesheet /> -->
-    <link rel="stylesheet" href="/admin/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css">
+    <link rel="stylesheet" href="/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css">
     <%= stylesheet_link_tag 'bootstrap', 'application' %>
     <%= stylesheet_link_tag 'post' %>
   </head>
@@ -64,8 +64,8 @@
 
     <%= javascript_include_tag 'jquery-1.9.0.min', (Padrino.env == :production ? 'bootstrap/bootstrap.min' : %w[bootstrap/bootstrap-affix bootstrap/bootstrap-alert bootstrap/bootstrap-button bootstrap/bootstrap-carousel bootstrap/bootstrap-collapse bootstrap/bootstrap-dropdown bootstrap/bootstrap-tooltip bootstrap/bootstrap-transition bootstrap/bootstrap-typeahead bootstrap/bootstrap-modal bootstrap/bootstrap-popover bootstrap/bootstrap-scrollspy bootstrap/bootstrap-tab]), :application %>
 
-    <script src="/admin/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
-    <script src="/admin/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js"></script>
+    <script src="/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
+    <script src="/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js"></script>
     <%= javascript_include_tag 'post' %>
   </body>
 </html>
